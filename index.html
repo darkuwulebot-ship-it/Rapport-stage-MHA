@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport de Stage - Mathéo Sarrazin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h1 class="nav-logo">Rapport de Stage Hero</h1>
+                <p class="nav-subtitle">Mathéo Sarrazin - Alter: Glace&Feu</p>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#" onclick="showPage('home')">Accueil</a></li>
+                <li><a href="#" onclick="showPage('flags')">Captures de Drapeaux</a></li>
+                <li><a href="#" onclick="showPage('arrests')">Arrestations</a></li>
+                <li><a href="#" onclick="showPage('other')">Autres Actions</a></li>
+                <li><a href="#" onclick="showPage('admin')">Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="home" class="page active">
+        <div class="hero">
+            <div class="hero-badge">⚡ TERMINALE A ⚡</div>
+            <h1>Mathéo Sarrazin</h1>
+            <div class="alter-badge">
+                <span class="ice">❄️ GLACE</span>
+                <span class="separator">&</span>
+                <span class="fire">🔥 FEU</span>
+            </div>
+            <p class="hero-subtitle">Élève de Terminale A - Rapport de Stage Hero</p>
+            <div class="mentor-info">
+                <div class="mentor-label">Maître de Stage</div>
+                <div class="mentor-name">Hero Shinra</div>
+                <div class="mentor-real-name">Shinto Sakura</div>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="flagCount">0</div>
+                    <div class="stat-label">Drapeaux Capturés</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="arrestCount">0</div>
+                    <div class="stat-label">Arrestations</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="otherCount">0</div>
+                    <div class="stat-label">Autres Actions</div>
+                </div>
+            </div>
+            <button onclick="showPage('admin')" class="cta-button">Ajouter une Action</button>
+        </div>
+    </div>
+
+    <div id="flags" class="page">
+        <div class="container">
+            <h1 class="page-title">🚩 Captures de Drapeaux</h1>
+            <div id="flagsTimeline" class="timeline"></div>
+        </div>
+    </div>
+
+    <div id="arrests" class="page">
+        <div class="container">
+            <h1 class="page-title">👮 Arrestations</h1>
+            <div id="arrestsTimeline" class="timeline"></div>
+        </div>
+    </div>
+
+    <div id="other" class="page">
+        <div class="container">
+            <h1 class="page-title">⭐ Autres Actions</h1>
+            <div id="otherTimeline" class="timeline"></div>
+        </div>
+    </div>
+
+    <div id="admin" class="page">
+        <div class="container">
+            <h1 class="page-title">Administration</h1>
+            <div class="admin-panel">
+                <form id="eventForm" class="event-form">
+                    <h2 id="formTitle">Ajouter une Action</h2>
+                    <input type="hidden" id="editEventId" value="">
+                    
+                    <div class="form-group">
+                        <label for="eventCategory">Catégorie *</label>
+                        <select id="eventCategory" required>
+                            <option value="flags">🚩 Capture de Drapeau</option>
+                            <option value="arrests">👮 Arrestation</option>
+                            <option value="other">⭐ Autre Action</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="eventTitle">Titre de l'action *</label>
+                        <input type="text" id="eventTitle" placeholder="Ex: Capture du drapeau de la guilde X" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="eventDate">Date *</label>
+                        <input type="date" id="eventDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="eventDescription">Description détaillée *</label>
+                        <textarea id="eventDescription" rows="4" placeholder="Décrivez l'action, le contexte, comment vous avez utilisé votre alter..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Captures d'écran (plusieurs possibles)</label>
+                        <input type="file" id="eventImageFiles" accept="image/*" multiple>
+                        <div id="urlInputs">
+                            <input type="text" class="url-input" placeholder="URL image 1">
+                        </div>
+                        <button type="button" onclick="addUrlInput()" class="add-url-button">+ Ajouter une URL</button>
+                    </div>
+
+                    <div id="imagePreview" class="image-preview"></div>
+
+                    <button type="submit" class="submit-button" id="submitButton">Ajouter l'action</button>
+                    <button type="button" class="cancel-button" id="cancelButton" style="display: none;" onclick="cancelEdit()">Annuler</button>
+                </form>
+
+                <div class="events-list">
+                    <h2>Toutes les Actions</h2>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" onclick="filterEvents('all')">Toutes</button>
+                        <button class="filter-btn" onclick="filterEvents('flags')">Drapeaux</button>
+                        <button class="filter-btn" onclick="filterEvents('arrests')">Arrestations</button>
+                        <button class="filter-btn" onclick="filterEvents('other')">Autres</button>
+                    </div>
+                    <div id="eventsList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
