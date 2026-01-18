@@ -94,6 +94,11 @@
             padding: 60px 20px;
         }
 
+        .img-moi {
+            height: 200px;
+            border-radius: 15px;
+        }
+
         .hero-badge {
             background: linear-gradient(135deg, #ffd700, #ffed4e);
             color: #1e3c72;
@@ -114,7 +119,8 @@
         }
 
         .alter-badge {
-            display: inline-flex;
+            display: flex;
+            flex-direction: column;
             align-items: center;
             gap: 15px;
             background: rgba(255, 255, 255, 0.15);
@@ -442,10 +448,12 @@
             <div class="hero-badge">⚡ TERMINALE A ⚡</div>
             <h1>Mathéo Sarrazin</h1>
             <div class="alter-badge">
+                <div>
                 <span class="ice">❄️ GLACE</span>
                 <span class="separator">&</span>
                 <span class="fire">🔥 FEU</span>
-                <img src="images/mathéo.png"> 
+                </div>
+                <img class="img-moi" src="images/mathéo.png" > 
             </div>
             <p class="hero-subtitle">Élève de Terminale A - Rapport de Stage Hero</p>
             <div class="mentor-info">
